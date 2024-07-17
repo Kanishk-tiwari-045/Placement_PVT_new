@@ -1,0 +1,12 @@
+myvenv
+media/
+pcenv/
+*/migrations/*
+.env
+*.pyc
+__pycache__/
+pc-ui
+*.pdf
+frontend/node_modules
+placement_cell_oauth_creds.json
+node_modules/

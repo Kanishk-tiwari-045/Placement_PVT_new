@@ -1,0 +1,1470 @@
+{
+	"info": {
+		"_postman_id": "69a947c2-f535-495c-be0a-492057ac495e",
+		"name": "Placement Cell",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "35081805",
+		"_collection_link": "https://placement-cell.postman.co/workspace/Placement-Cell-Workspace~df841400-2084-4c25-850a-5cbf0094604c/collection/35081805-69a947c2-f535-495c-be0a-492057ac495e?action=share&source=collection_link&creator=35081805"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"paras.g.brudite@gmail.com\",\r\n    \"password\":\"paras@12345\",\r\n    \"name\":\"PARAS\",\r\n    \"phone_number\":\"788945\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/auth/signup/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signup",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"xyz@gmail.com\",\r\n    \"password\":\"xyz@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/auth/login/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post Applicant",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"Varun\",\r\n    \"email\":\"varun.p.brudite@gmail.com\",\r\n    \"phone_number\":\"7896541237\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicant/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicant",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Applicant",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"XYZ\",\r\n    \"email\":\"xyz@gmail.com\",\r\n    \"phone_number\":\"234567890\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicant/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicant",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Applicant by Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"XYZ\",\r\n    \"email\":\"xyz@gmail.com\",\r\n    \"phone_number\":\"234567890\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicant/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicant",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Applicant by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"XYZ\",\r\n    \"email\":\"xyz@gmail.com\",\r\n    \"phone_number\":\"234567890\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicant/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicant",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Applicant by id",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"KANISHK\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicant/?id=5",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicant",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Applicant Profile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"applicant\":\"1\",\r\n    \"highest_qualification\":\"B10\",\r\n    \"stream\":\"BBA\",\r\n    \"year\":\"First\",\r\n    \"education_status\":\"Pursuing\",\r\n    \"passing_year\":2025,\r\n    \"cgpa\":6.0,\r\n    \"skills\":[\"Python\", \"C\", \"React\"],\r\n    \"address\":\"qwerty\",\r\n    \"city\":\"jaipur\",\r\n    \"state\":\"raj\",\r\n    \"pincode\":\"123654\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicantprofile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicantprofile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Applicant Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicantprofile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicantprofile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Applicant Profile by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicantprofile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicantprofile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Applicant Profile by Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicantprofile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicantprofile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Applicant Profile",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"applicant\":\"xyz@gmail.com\",\r\n    \"highest_qualification\":\"BTech\",\r\n    \"stream\":\"BTech\",\r\n    \"year\":\"Second\",\r\n    \"education_status\":\"Finished\",\r\n    \"passing_year\":2026,\r\n    \"cgpa\":9.5,\r\n    \"skills\":[\"Python\"],\r\n    \"address\":\"Sikar Road\",\r\n    \"city\":\"Jaipur\",\r\n    \"state\":\"Rajasthan\",\r\n    \"pincode\":\"302039\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/applicantprofile/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"applicantprofile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Application",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"applicant\":\"3\",\r\n    \"applicant_profile\":\"1\",\r\n    \"job\":\"Python Developer\",\r\n    \"stage\":2,\r\n    \"status\":\"shortlisted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/application/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"application",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Application",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"applicant\":\"3\",\r\n    \"applicant_profile\":\"1\",\r\n    \"job\":\"Python Developer\",\r\n    \"stage\":2,\r\n    \"status\":\"shortlisted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/application/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"application",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Application by Applicant",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"applicant\":\"3\",\r\n    \"applicant_profile\":\"1\",\r\n    \"job\":\"Python Developer\",\r\n    \"stage\":2,\r\n    \"status\":\"shortlisted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/application/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"application",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Application by Applicant Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"applicant\":\"3\",\r\n    \"applicant_profile\":\"1\",\r\n    \"job\":\"Python Developer\",\r\n    \"stage\":2,\r\n    \"status\":\"shortlisted\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/application/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"application",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Organization",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"ABC\",\r\n    \"website\":\"https://www.aws.edu.in/\",\r\n    \"contact_details\":\"456789\",\r\n    \"industry_type\":\"Technical\",\r\n    \"location\":\"Mumbai\", \r\n    \"created_by\":\"5\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/org/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"org",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Organization",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"JKLU\",\r\n    \"website\":\"https://www.jklu.edu.in/\",\r\n    \"contact_details\":\"741258963\",\r\n    \"industry_type\":\"Professional\",\r\n    \"location\":\"Delhi\", \r\n    \"created_by\":\"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/org/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"org",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Organization by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"JKLU\",\r\n    \"website\":\"https://www.jklu.edu.in/\",\r\n    \"contact_details\":\"741258963\",\r\n    \"industry_type\":\"Professional\",\r\n    \"location\":\"Delhi\", \r\n    \"created_by\":\"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/org/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"org",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Organization by Name",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"JKLU\",\r\n    \"website\":\"https://www.jklu.edu.in/\",\r\n    \"contact_details\":\"741258963\",\r\n    \"industry_type\":\"Professional\",\r\n    \"location\":\"Delhi\", \r\n    \"created_by\":\"4\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/org/create/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"org",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Job",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"PQR\",\r\n    \"description\":\"Apply for pqr\",\r\n    \"work_location\":\"onsite\",\r\n    \"job_type\":\"internship\",\r\n    \"eligibility_criteria\":\"4 years experience\",\r\n    \"deadline\":\"2024-12-10\",\r\n    \"stipend_salary\":\"20000\",\r\n    \"company\":3,\r\n    \"status\":\"open\",\r\n    \"openings\":15,\r\n    \"perks_benefits\":\"Swags\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\":\"PQR\",\r\n    \"description\":\"Apply for pqr\",\r\n    \"work_location\":\"onsite\",\r\n    \"job_type\":\"internship\",\r\n    \"eligibility_criteria\":\"4 years experience\",\r\n    \"deadline\":\"2024-12-10\",\r\n    \"stipend_salary\":\"20000\",\r\n    \"company\":3,\r\n    \"status\":\"open\",\r\n    \"openings\":15,\r\n    \"perks_benefits\":\"Swags\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job by id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Python Developer",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Must know Python data typess, data structures in python",
+							"type": "text"
+						},
+						{
+							"key": "work_location",
+							"value": "Remote",
+							"type": "text"
+						},
+						{
+							"key": "job_type",
+							"value": "Part Time",
+							"type": "text"
+						},
+						{
+							"key": "eligibility_criteria",
+							"value": "Must have experience of 2 years",
+							"type": "text"
+						},
+						{
+							"key": "deadline",
+							"value": "2024-12-25",
+							"type": "text"
+						},
+						{
+							"key": "stipend_salary",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "JKLU",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Open",
+							"type": "text"
+						},
+						{
+							"key": "openings",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "custom_ques",
+							"value": "{\"Question1\":\"Why do you want to apply for this job?\", \"Question2\":\"Expllain your projects\" }",
+							"type": "text"
+						},
+						{
+							"key": "perks_benefits",
+							"value": "Letter of Recommendation",
+							"type": "text"
+						},
+						{
+							"key": "attachment_o",
+							"type": "file",
+							"src": "postman-cloud:///1ef2c6b4-e227-4aa0-b975-5e09229b0537"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job by Title",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Python Developer",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Must know Python data typess, data structures in python",
+							"type": "text"
+						},
+						{
+							"key": "work_location",
+							"value": "Remote",
+							"type": "text"
+						},
+						{
+							"key": "job_type",
+							"value": "Part Time",
+							"type": "text"
+						},
+						{
+							"key": "eligibility_criteria",
+							"value": "Must have experience of 2 years",
+							"type": "text"
+						},
+						{
+							"key": "deadline",
+							"value": "2024-12-25",
+							"type": "text"
+						},
+						{
+							"key": "stipend_salary",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "JKLU",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Open",
+							"type": "text"
+						},
+						{
+							"key": "openings",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "custom_ques",
+							"value": "{\"Question1\":\"Why do you want to apply for this job?\", \"Question2\":\"Expllain your projects\" }",
+							"type": "text"
+						},
+						{
+							"key": "perks_benefits",
+							"value": "Letter of Recommendation",
+							"type": "text"
+						},
+						{
+							"key": "attachment_o",
+							"type": "file",
+							"src": "postman-cloud:///1ef2c6b4-e227-4aa0-b975-5e09229b0537"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job by Organization id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Python Developer",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Must know Python data typess, data structures in python",
+							"type": "text"
+						},
+						{
+							"key": "work_location",
+							"value": "Remote",
+							"type": "text"
+						},
+						{
+							"key": "job_type",
+							"value": "Part Time",
+							"type": "text"
+						},
+						{
+							"key": "eligibility_criteria",
+							"value": "Must have experience of 2 years",
+							"type": "text"
+						},
+						{
+							"key": "deadline",
+							"value": "2024-12-25",
+							"type": "text"
+						},
+						{
+							"key": "stipend_salary",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "JKLU",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Open",
+							"type": "text"
+						},
+						{
+							"key": "openings",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "custom_ques",
+							"value": "{\"Question1\":\"Why do you want to apply for this job?\", \"Question2\":\"Expllain your projects\" }",
+							"type": "text"
+						},
+						{
+							"key": "perks_benefits",
+							"value": "Letter of Recommendation",
+							"type": "text"
+						},
+						{
+							"key": "attachment_o",
+							"type": "file",
+							"src": "postman-cloud:///1ef2c6b4-e227-4aa0-b975-5e09229b0537"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job by Work Location",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Python Developer",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Must know Python data typess, data structures in python",
+							"type": "text"
+						},
+						{
+							"key": "work_location",
+							"value": "Remote",
+							"type": "text"
+						},
+						{
+							"key": "job_type",
+							"value": "Part Time",
+							"type": "text"
+						},
+						{
+							"key": "eligibility_criteria",
+							"value": "Must have experience of 2 years",
+							"type": "text"
+						},
+						{
+							"key": "deadline",
+							"value": "2024-12-25",
+							"type": "text"
+						},
+						{
+							"key": "stipend_salary",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "JKLU",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Open",
+							"type": "text"
+						},
+						{
+							"key": "openings",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "custom_ques",
+							"value": "{\"Question1\":\"Why do you want to apply for this job?\", \"Question2\":\"Expllain your projects\" }",
+							"type": "text"
+						},
+						{
+							"key": "perks_benefits",
+							"value": "Letter of Recommendation",
+							"type": "text"
+						},
+						{
+							"key": "attachment_o",
+							"type": "file",
+							"src": "postman-cloud:///1ef2c6b4-e227-4aa0-b975-5e09229b0537"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job by Company Location",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{auth_token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "title",
+							"value": "Python Developer",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Must know Python data typess, data structures in python",
+							"type": "text"
+						},
+						{
+							"key": "work_location",
+							"value": "Remote",
+							"type": "text"
+						},
+						{
+							"key": "job_type",
+							"value": "Part Time",
+							"type": "text"
+						},
+						{
+							"key": "eligibility_criteria",
+							"value": "Must have experience of 2 years",
+							"type": "text"
+						},
+						{
+							"key": "deadline",
+							"value": "2024-12-25",
+							"type": "text"
+						},
+						{
+							"key": "stipend_salary",
+							"value": "1000",
+							"type": "text"
+						},
+						{
+							"key": "company",
+							"value": "JKLU",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "Open",
+							"type": "text"
+						},
+						{
+							"key": "openings",
+							"value": "20",
+							"type": "text"
+						},
+						{
+							"key": "custom_ques",
+							"value": "{\"Question1\":\"Why do you want to apply for this job?\", \"Question2\":\"Expllain your projects\" }",
+							"type": "text"
+						},
+						{
+							"key": "perks_benefits",
+							"value": "Letter of Recommendation",
+							"type": "text"
+						},
+						{
+							"key": "attachment_o",
+							"type": "file",
+							"src": "postman-cloud:///1ef2c6b4-e227-4aa0-b975-5e09229b0537"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/job/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"job",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,200 @@
+.features-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 100vw;
+  background: #d7d7d7;
+  color: #343434;
+  position: relative;
+  overflow: hidden;
+}
+.btn-5,
+.btn-5 *,
+.btn-5 :after,
+.btn-5 :before,
+.btn-5:after,
+.btn-5:before {
+  border: 0 solid;
+  box-sizing: border-box;
+}
+.btn-5 {
+  -webkit-tap-highlight-color: 
+transparent;
+  -webkit-appearance: button;
+  background-color: 
+#000;
+  background-image: none;
+  color: 
+#fff;
+  cursor: pointer;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+  font-size: 100%;
+  font-weight: 900;
+  line-height: 0;
+  margin: 0;
+  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+  padding: 0;
+  text-transform: uppercase;
+}
+.btn-5:disabled {
+  cursor: default;
+}
+.btn-5:-moz-focusring {
+  outline: auto;
+}
+.btn-5 svg {
+  display: block;
+  vertical-align: middle;
+}
+.btn-5 [hidden] {
+  display: none;
+}
+.btn-5 {
+  border-radius: 99rem;
+  border-width: 2px;
+  overflow: hidden;
+  width:fit-content;
+  padding: 0.8rem 3rem;
+  position: relative;
+}
+.btn-5 span {
+  mix-blend-mode: difference;
+}
+.btn-5:before {
+  --tilt: 1.2rem;
+  background: 
+#fff;
+  -webkit-clip-path: polygon(
+    0 0,
+    calc(100% - var(--tilt)) 0,
+    100% 50%,
+    calc(100% - var(--tilt)) 100%,
+    0 100%
+  );
+  clip-path: polygon(
+    0 0,
+    calc(100% - var(--tilt)) 0,
+    100% 50%,
+    calc(100% - var(--tilt)) 100%,
+    0 100%
+  );
+  content: "";
+  display: block;
+  height: 100%;
+  left: calc(-100% - var(--tilt));
+  position: absolute;
+  top: 0;
+  transform: translateX(var(--progress, 0));
+  transition: transform 0.3s ease;
+  width: calc(100% + var(--tilt));
+}
+.btn-5:hover:before {
+  --progress: 100%;
+}
+
+.bubbles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bubble {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(0, 8, 255, 0.352);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: bubbleAnimation 3s ease-in-out;
+}
+
+.bubble.big {
+  width: 200px;
+  height: 200px;
+}
+
+@keyframes bubbleAnimation {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh); /* Move bubble above the screen */
+    opacity: 0;
+  }
+}
+
+.feature-card {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  margin: 20px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.card-front,
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  backface-visibility: hidden; /* Hide the back of the card initially */
+  transition: transform 0.6s;
+  border: 3px solid #0800ff; /* Apply border to the image only */
+  border-radius: 20px; /* Rounded corners */
+}
+
+.card-front {
+  background-color: #363636;
+  border: 3px solid #0d00ff; /* Increased border width */
+  padding: 20px;
+}
+
+.card-back {
+  transform: rotateY(180deg);
+  background-color: #363636;
+  border: 3px solid #2200ff; /* Increased border width */
+  padding: 20px;
+}
+
+.feature-card:hover .card-front {
+  transform: rotateY(180deg);
+}
+
+.feature-card:hover .card-back {
+  transform: rotateY(0deg);
+}
+
+.feature-card img {
+  max-width: 170px;
+  height: 170px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+.feature-card h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: white; /* Set heading color to white */
+  text-align: center;
+  font-weight: bold; /* Set heading to bold */
+}
+
+.feature-card p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white; /* Set paragraph color to white */
+}
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Job Posted</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .email-container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .email-header {
+            text-align: center;
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 30px 20px;
+            border-bottom: 5px solid #0056b3;
+        }
+        .email-header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+        }
+        .email-body {
+            padding: 30px 20px;
+            line-height: 1.5;
+            color: #121212;
+        }
+        .email-body p {
+            margin: 0 0 20px;
+        }
+        .email-footer {
+            text-align: center;
+            padding: 20px;
+            color: #777777;
+            font-size: 12px;
+            border-top: 1px solid #dddddd;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>New Job Posted</h1>
+        </div>
+        <div class="email-body">
+            <p>Dear {{ company_name }},</p>
+            <p>We are excited to inform you about the new job opportunity has been posted.</p>
+            <p><strong>{{ job_title }}</strong></p>
+            <p>Details about the job:</p>
+            <ul>
+                <li><strong>Location:</strong> {{ work_location }}</li>
+                <li><strong>Job Type:</strong> {{ job_type }}</li>
+                <li><strong>Eligibility Criteria:</strong> {{ eligibility_criteria }}</li>
+                <li><strong>Deadline:</strong> {{ deadline }}</li>
+                <li><strong>Number of Openings:</strong> {{ openings }}</li>
+            </ul>
+            <p>Best regards,</p>
+            <p>Team Brudite</p>
+        </div>
+        <div class="email-footer">
+            <p>&copy; 2024 Brudite. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

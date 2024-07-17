@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Successful</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #555;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Application to {{ job_title }} successfully submitted</h1>
+        <p>Dear {{ applicant_name }},</p>
+        <p>Thank you for applying for the position of <strong>{{ job_title }}</strong> through Placement Cell.</p>
+        <p>Here are the details of the job you applied for:</p>
+        <ul>
+            <li><strong>Job Title:</strong> {{ job_title }}</li>
+            <li><strong>Job Description:</strong> {{ job_description }}</li>
+            <li><strong>Work Location:</strong> {{ work_location }}</li>
+            <li><strong>Location:</strong> {{ location }}</li>
+            <li><strong>Benefits:</strong> {{ benefits }}</li>
+        </ul>
+        <p>We appreciate your interest in joining our team. Your application is under review, and we will get back to you soon.</p>
+        <p>Best regards,<br>The Placement Cell Team</p>
+        <div class="footer">
+            <p>If you have any questions, feel free to reply to this email.</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+We are looking for a highly skilled and experienced Backend Engineer to join our team. As a Backend Engineer, you will play a key role in designing, developing, and maintaining scalable backend systems that power our applications. The ideal candidate will have a strong foundation in computer science, extensive experience in backend development, and a track record of leadership and innovation in previous roles.
+Responsibilities:
+
+System Design and Architecture:
+
+Collaborate with cross-functional teams to understand business requirements and translate them into scalable and efficient backend solutions.
+Design and architect high-performance, reliable, and maintainable backend systems that meet the needs of our products and services.
+Implement best practices for scalability, performance, and security in backend architecture and design.
+Backend Development:
+
+Lead the development and implementation of backend features and functionalities using modern technologies and frameworks.
+Write clean, efficient, and well-documented code in languages such as Java, Python, or Go.
+Optimize backend systems for performance, scalability, and reliability.
+Ensure code quality through code reviews, testing, and continuous integration practices.
+Technical Leadership:
+
+Provide technical leadership and mentorship to junior engineers on the team.
+Drive innovation and continuous improvement in backend development processes and practices.
+Collaborate with senior leadership to define technical strategies and roadmaps for backend systems.
+Cross-Functional Collaboration:
+
+Work closely with frontend engineers, product managers, and other stakeholders to deliver end-to-end solutions.
+Communicate effectively with team members and stakeholders to ensure alignment on technical requirements and priorities.
+Requirements:
+
+Education: Bachelor's degree in Computer Science or a related field from one of the Tier 1 IITs (Indian Institutes of Technology).
+Experience: 6-9 years of experience in backend engineering roles, with a proven track record of delivering scalable and reliable backend systems.
+Technical Skills:
+
+Expertise in backend development using languages such as Java, Python, or Go, along with proficiency in related frameworks and technologies.
+Strong understanding of data structures, algorithms, and object-oriented design principles.
+Experience with relational and non-relational databases (e.g., MySQL, MongoDB, Redis).
+Experience with cloud platforms such as AWS, Azure, or GCP.
+Leadership Experience: Experience in a principal or staff engineer role at a previous company, with demonstrated leadership and mentorship capabilities.
+Communication Skills: Excellent verbal and written communication skills, with the ability to articulate technical concepts and collaborate effectively with cross-functional teams.
+Problem-Solving Skills: Strong analytical and problem-solving skills, with the ability to troubleshoot complex issues and drive innovative solutions.
+Benefits:
+
+Competitive salary and benefits package
+Opportunity for professional growth and career advancement
+Collaborative and supportive work environment
+If you are a highly experienced and motivated Backend Engineer looking for a challenging opportunity to make an impact, we encourage you to apply and join our dynamic team. Let's build scalable and innovative backend solutions together!

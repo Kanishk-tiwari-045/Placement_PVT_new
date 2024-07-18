@@ -380,7 +380,7 @@ import Applicant from './Applicant';
 
 import Applied from './Applied';
 
- 
+import Shortlisted from "./Shortlisted";
 
 const Navbar = ({ setActiveTab }) => { 
 
@@ -395,6 +395,8 @@ const Navbar = ({ setActiveTab }) => {
   const [isAppliedOpen, setIsAppliedOpen] = useState(false); // State for Applicant form 
 
   const [isApplicationOpen, setIsApplicationOpen] = useState(false); 
+
+  const [isShortlistedOpen, setIsShortlistedOpen] = useState(false);
 
   const [isApplicationListOpen, setIsApplicationListOpen] = useState(false); // State for Applicant form 
 
@@ -420,6 +422,8 @@ const Navbar = ({ setActiveTab }) => {
 
   const applicantFormRef = useRef(null); 
 
+  const shortlistedFormRef = useRef(null);
+
   const applicationFormRef = useRef(null); 
 
   const applicationlistFormRef = useRef(null); // Ref for Applicant form 
@@ -438,10 +442,15 @@ const Navbar = ({ setActiveTab }) => {
 
   }; 
 
+  const toggleShortlisted = () => {
+    setIsShortlistedOpen(!isShortlistedOpen);
+    setDimBackground(!dimBackground);
+  };
+
   const toggleApplied = () => {
     setIsAppliedOpen(!isAppliedOpen);
     setDimBackground(!dimBackground);
-  }
+  };
 
   const toggleJob = () => { 
 
@@ -506,7 +515,7 @@ const Navbar = ({ setActiveTab }) => {
     setDimBackground(false); 
 
   }; 
-
+  
   const handleOrganisationClose = (e) => { 
 
     if (organisationFormRef.current && organisationFormRef.current.contains(e.target)) { 
@@ -593,8 +602,13 @@ const Navbar = ({ setActiveTab }) => {
 
   }; 
 
- 
-
+  const handleShortlistedClose = (e) => {
+    if (shortlistedFormRef.current && shortlistedFormRef.current.contains(e.target)) {
+      return;
+    }
+    setIsShortlistedOpen(false);
+    setDimBackground(false);
+  }
   // Function to change role to "applicant" if the checkbox is not checked 
 
   const handleRoleChange = (newRole) => { 
@@ -621,7 +635,7 @@ const Navbar = ({ setActiveTab }) => {
 
             onMouseLeave={() => { 
 
-              if (!isSignupOpen && !isOrganisationOpen && !isJobOpen && !isApplicantOpen && !isApplicationOpen && !isApplicationListOpen && !isAppliedOpen) { 
+              if (!isSignupOpen && !isOrganisationOpen && !isJobOpen && !isApplicantOpen && !isApplicationOpen && !isApplicationListOpen && !isAppliedOpen && !isShortlistedOpen) { 
 
                 setPosition((prev) => ({ 
 
@@ -672,6 +686,8 @@ const Navbar = ({ setActiveTab }) => {
                   <Tab setPosition={setPosition} setActiveTab={toggleJob}>Job</Tab> 
 
                   <Tab setPosition={setPosition} setActiveTab={toggleApplicationList}>Applications</Tab> 
+
+                  <Tab setPosition={setPosition} setActiveTab={toggleShortlisted}>Shortlisted</Tab> 
 
                 </> 
 
@@ -927,7 +943,63 @@ const Navbar = ({ setActiveTab }) => {
 
       </AnimatePresence> 
 
- 
+      <AnimatePresence> 
+
+        {isShortlistedOpen && ( 
+
+          <motion.div 
+
+            initial={{ opacity: 0 }} 
+
+            animate={{ opacity: dimBackground ? 1 : 0.5 }} 
+
+            exit={{ opacity: 0 }} 
+
+            transition={{ duration: 0.3 }} 
+
+            className="fixed inset-0 flex justify-center items-center bg-gray-900 bg-opacity-50" 
+
+            onClick={handleShortlistedClose} 
+
+          > 
+
+            <motion.div 
+
+              initial={{ opacity: 0, scale: 0.8 }} 
+
+              animate={{ opacity: 1, scale: 1 }} 
+
+              exit={{ opacity: 0, scale: 0.8 }} 
+
+              transition={{ duration: 0.3 }} 
+
+              className="bg-transparent rounded-lg p-6 z-50" 
+
+              style={{ 
+
+                maxHeight: 'calc(100vh - 80px)',  
+
+                overflow: 'auto', 
+
+                marginTop: '80px', 
+
+              }} 
+
+              ref={shortlistedFormRef} 
+
+              onClick={(e) => e.stopPropagation()} 
+
+            > 
+
+              <Shortlisted onClose={handleShortlistedClose} onRoleChange={handleRoleChange} /> 
+
+            </motion.div> 
+
+          </motion.div> 
+
+        )} 
+
+      </AnimatePresence> 
 
       <AnimatePresence> 
 

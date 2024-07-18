@@ -76,7 +76,13 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
         fields = "__all__"
+        read_only_fields = ("id",)  # Optionally set fields that should not be updated
 
+    def update(self, instance, validated_data):
+        instance.status = validated_data.get('status', instance.status)
+        instance.save()
+        return instance
+    
 class ApplicationGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application

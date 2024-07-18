@@ -128,28 +128,30 @@ const ApplicationList = ({ applicantId, applicantProfileId }) => {
     setIsModalOpen(true);
   };
 
-  const handleShortlistApplicant = async (applicationId, applicantId) => {
+  const handleShortlistApplicant = async (applicantId, jobId) => {
     try {
-      await axios.patch(
-        `http://localhost:8000/api/v1/application/${applicationId}/`,
+      const response = await axios.patch(
+        `http://localhost:8000/api/v1/application/`,
+        {}, // Empty body as no request body is needed, parameters are passed via params
         {
-          stage: currentStage + 1, // Adjust the stage accordingly
-          status: 'Shortlisted',
-        },
-        {
+          params: {
+            applicant: applicantId,
+            job: jobId, // Pass job ID as a parameter
+          },
           headers: {
             Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
           },
         }
       );
-  
-      // Fetch updated applicants list after shortlisting
-      await fetchApplicants(selectedJobId);
+      console.log('Applicant shortlisted successfully:', response.data);
+      // Optionally update local state or perform other actions upon success
     } catch (error) {
       console.error('Error shortlisting applicant:', error);
+      // Handle error scenarios
     }
   };
-
+  
+  
   const filteredJobs = jobs.filter((job) =>
     job.title.toLowerCase().includes(search.toLowerCase())
   );
@@ -444,7 +446,7 @@ const ApplicationList = ({ applicantId, applicantProfileId }) => {
                   <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => handleShortlistApplicant(application.applicant, currentStage)}
+                    onClick={() => handleShortlistApplicant(application.applicant, selectedJobId)}
                     style={{ marginTop: '10px', zIndex: 2 }}
                   >
                     Shortlist

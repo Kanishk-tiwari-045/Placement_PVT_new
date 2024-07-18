@@ -387,27 +387,31 @@ class ApplicationView(APIView):
             status=status.HTTP_200_OK,
         )
     
-    def patch(self, request, application_id):
+    def patch(self, request):
         try:
-            application = self.querysets.get(id=application_id)
-            application.stage = request.data.get('stage', application.stage)
-            application.status = request.data.get('status', application.status)
-            application.save()
+            applicant_id = request.query_params.get('applicant')
+            job_id = request.query_params.get('job')
 
-            # Send email if the status is 'Shortlisted'
-            if application.status == 'Shortlisted':
-                applicant_email = application.applicant.email
-                send_mail(
-                    'Application Shortlisted',
-                    'Congratulations! Your application has been shortlisted.',
-                    'kanishktiwari11a@gmail.com',
-                    [applicant_email],
-                    fail_silently=False,
-                )
+            if not applicant_id or not job_id:
+                return Response({'error': 'Applicant ID and Job ID are required.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            return Response(status=status.HTTP_200_OK)
+            # Fetch the application based on applicant_id and job_id
+            application = Application.objects.get(applicant_id=applicant_id, job_id=job_id)
+            
+            # Serialize the instance with updated data
+            serializer = self.serializer_class(application, data={'status': 'shortlisted'}, partial=True)
+            if serializer.is_valid():
+                serializer.save()
+
+                # Optionally, send email or perform other actions
+
+                return Response({'message': 'Application shortlisted successfully.'}, status=status.HTTP_200_OK)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
         except Application.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response({'error': 'Application not found.'}, status=status.HTTP_404_NOT_FOUND)
+
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 

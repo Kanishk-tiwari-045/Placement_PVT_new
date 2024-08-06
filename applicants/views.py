@@ -184,7 +184,6 @@ from rest_framework.response import Response
 # from rest_framework.authentication import TokenAuthentication
 from rest_framework import generics
 from .models import Skill
-from django.core.mail import send_mail
 from .serializers import SkillSerializer
 
 from .models import *
@@ -371,14 +370,6 @@ class ApplicationView(APIView):
                 {"data": applications.data, "total_count": data_count},
                 status=status.HTTP_200_OK,
             )
-        
-        if applicant and job:
-            querysets = self.querysets.filter(applicant=applicant, job=job)
-            applications = ApplicationCreateSerializer(querysets, many=True)
-            return Response(
-                {"data": applications.data, "total_count": data_count},
-                status=status.HTTP_200_OK,
-            )
 
         # Default case: Return all applications
         applications = ApplicationCreateSerializer(self.querysets, many=True)
@@ -387,6 +378,23 @@ class ApplicationView(APIView):
             status=status.HTTP_200_OK,
         )
     
+    # def patch(self, request, pk=None):
+    #     try:
+    #         application = self.querysets.get(pk=pk)
+    #     except Application.DoesNotExist:
+    #         return Response(
+    #             {"message": "Application not found"},
+    #             status=status.HTTP_404_NOT_FOUND,
+    #         )
+
+    #     serial_data = self.serializer_class(application, data=request.data, partial=True)
+    #     if serial_data.is_valid():
+    #         serial_data.save()
+    #         return Response({"data": serial_data.data}, status=status.HTTP_200_OK)
+    #     else:
+    #         return Response(serial_data.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
     def patch(self, request):
         try:
             applicant_id = request.query_params.get('applicant')
@@ -402,8 +410,6 @@ class ApplicationView(APIView):
             serializer = self.serializer_class(application, data={'status': 'shortlisted'}, partial=True)
             if serializer.is_valid():
                 serializer.save()
-
-                # Optionally, send email or perform other actions
 
                 return Response({'message': 'Application shortlisted successfully.'}, status=status.HTTP_200_OK)
             else:

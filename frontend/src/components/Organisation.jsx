@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {
   TextField,
@@ -73,7 +73,7 @@ const Organisation = ({ onClose }) => {
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
-        'http://127.0.0.1:8000/api/v1/resend-otp/',
+        'http://127.0.0.1:8000/api/v1/verify-otp/',
         {
           email: formData.email,
           organization_id: localStorage.getItem('organisationId'),
@@ -91,22 +91,27 @@ const Organisation = ({ onClose }) => {
       }
     } catch (error) {
       console.error('Error resending OTP:', error);
-      console.error('Error response data:', error.response?.data);
       setOTError('Failed to resend OTP');
     }
   };
 
   const handleSubmit = async (e) => {
+    const today = new Date().toISOString().split('T')[0];
+    if (formData.founded_date > today) {
+      alert("Founded date cannot be in the future.");
+      return;
+    }
+
     e.preventDefault();
     const data = new FormData();
     for (const key in formData) {
       if (key === 'email') {
-        data.append('userEmail', formData[key]); // Update 'email' to 'userEmail'
+        data.append('userEmail', formData[key]);
       } else {
         data.append(key, formData[key]);
       }
     }
-  
+
     try {
       const token = localStorage.getItem('token');
       const response = await axios.post(
@@ -119,21 +124,15 @@ const Organisation = ({ onClose }) => {
           },
         }
       );
-  
+      console.log('Organisation created successfully:', response.data);
       localStorage.setItem('organisationId', response.data.organisation_id);
       localStorage.setItem('otp', response.data.otp);
-      localStorage.setItem('token', token); // Store the token as well
       localStorage.setItem('otp_created_at', response.data.otp_created_at);
-      // Check if otp_created_at is available in the response before storing
-  
-      // alert('Organisation created successfully');
-  
-      handleOpenOTPDialog();// Open OTP verification dialog
-      alert('Organisation created successfully'); 
-    } 
-    catch (error) {
+
+      alert('Organisation created successfully');
+      handleOpenOTPDialog(); // Open OTP verification dialog
+    } catch (error) {
       console.error('Error creating organisation:', error);
-      console.error('Error response data:', error.response?.data);
       alert('Failed to create organisation');
     }
   };
@@ -145,29 +144,13 @@ const Organisation = ({ onClose }) => {
       const storedOtp = localStorage.getItem('otp');
       const storedOtpCreatedAt = localStorage.getItem('otp_created_at');
       const userEmail = localStorage.getItem('userEmail');
-      const otpFromForm = otp; // Assuming 'otp' is the state variable for OTP input
-  
-      // Debugging logs to ensure values are correctly fetched
-      console.log('localStorage token:', token);
-      console.log('localStorage organizationId:', organizationId);
-      console.log('localStorage storedOtp:', storedOtp);
-      console.log('localStorage storedOtpCreatedAt:', storedOtpCreatedAt);
-      console.log('localStorage userEmail:', userEmail);
-      console.log('otp from form:', otpFromForm);
-  
-      // Check if all required parameters are present
-      if (!(userEmail && otpFromForm && organizationId && storedOtp && storedOtpCreatedAt && token)) {
-        console.error('Missing or invalid parameters in localStorage or form state');
-        return;
-      }
-  
-      // Make API call to verify OTP
+
       const otpResponse = await axios.post(
         'http://127.0.0.1:8000/api/v1/verify-otp/',
         {
           userEmail: userEmail,
           organization_id: organizationId,
-          otp: otpFromForm,
+          otp: otp,
           stored_otp: storedOtp,
           otp_created_at: storedOtpCreatedAt,
         },
@@ -178,12 +161,6 @@ const Organisation = ({ onClose }) => {
           },
         }
       );
-      console.log('localStorage token:', token);
-      console.log('localStorage organizationId:', organizationId);
-      console.log('localStorage storedOtp:', storedOtp);
-      console.log('localStorage storedOtpCreatedAt:', storedOtpCreatedAt);
-      console.log('localStorage userEmail:', userEmail);
-      console.log('otp from form:', otpFromForm);
 
       if (otpResponse.status === 200) {
         alert('OTP Verified successfully');
@@ -194,7 +171,6 @@ const Organisation = ({ onClose }) => {
       }
     } catch (error) {
       console.error('Error verifying OTP:', error);
-      console.error('Error response data:', error.response?.data); // Log server response data
       if (error.response?.data?.message === 'Invalid data, Organization not found') {
         setOTError('Organization not found');
       } else {
@@ -202,18 +178,17 @@ const Organisation = ({ onClose }) => {
       }
     }
   };
-  
-  
+
   return (
     <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '20px' }}>
-      <Paper style={{ padding: '20px', maxWidth: '600px', width: '100%', borderRadius: '25px', textAlign: 'center' }}>
-        <Typography variant="h4" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 700 }}>
-          Create Profile
-        </Typography>
-        <form onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
+       <Paper style={{ padding: '20px', maxWidth: '600px', width: '100%', borderRadius: '25px', textAlign: 'center' }}>
+         <Typography variant="h4" gutterBottom style={{ fontFamily: 'Roboto', fontWeight: 700 }}>
+           Create Profile
+         </Typography>
+         <form onSubmit={handleSubmit}>
+           <Grid container spacing={2}>
+             <Grid item xs={12} sm={6}>
+               <TextField
                 label="Name"
                 name="name"
                 value={formData.name}
@@ -339,28 +314,6 @@ const Organisation = ({ onClose }) => {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                label="Email"
-                type="email"
-                name="email"
-                value={formData.email}
-                fullWidth
-                required
-                InputProps={{
-                  style: {
-                    borderRadius: '20px',
-                    fontWeight: 'bold',
-                    readOnly: true,
-                  },
-                }}
-                InputLabelProps={{
-                  style: {
-                    fontWeight: 'bold',
-                  }
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
                 label="Founded Date"
                 type="date"
                 name="founded_date"
@@ -377,6 +330,9 @@ const Organisation = ({ onClose }) => {
                   style: {
                     borderRadius: '20px',
                     fontWeight: 'bold',
+                  },
+                  inputProps: {
+                    max: new Date().toISOString().split('T')[0], // Set the max date to today
                   }
                 }}
               />
@@ -384,7 +340,6 @@ const Organisation = ({ onClose }) => {
             <Grid item xs={12} sm={6}>
               <TextField
                 label="Number of Employees"
-                type="number"
                 name="number_of_employees"
                 value={formData.number_of_employees}
                 onChange={handleChange}
@@ -405,7 +360,6 @@ const Organisation = ({ onClose }) => {
             <Grid item xs={12} sm={6}>
               <TextField
                 label="Annual Revenue"
-                type="number"
                 name="annual_revenue"
                 value={formData.annual_revenue}
                 onChange={handleChange}
@@ -423,31 +377,73 @@ const Organisation = ({ onClose }) => {
                 }}
               />
             </Grid>
-            <Grid item xs={12}>
-              <Button type="submit" variant="contained" sx={{ backgroundColor: 'blue', '&:hover': { backgroundColor: 'darkblue' } }}>
-                Register
-              </Button>
-            </Grid>
           </Grid>
+          <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '20px' }}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ borderRadius: '25px', fontWeight: 'bold', fontSize: '16px', padding: '10px 20px' }}
+            >
+              Create
+            </Button>
+            <Button
+              type="button"
+              variant="contained"
+              color="secondary"
+              onClick={onClose}
+              style={{ borderRadius: '25px', fontWeight: 'bold', fontSize: '16px', padding: '10px 20px' }}
+            >
+              Cancel
+            </Button>
+    
+            <Button
+              type="button"
+              variant="contained"
+              color="primary"
+              onClick={handleOpenOTPDialog}
+              style={{ borderRadius: '25px', fontWeight: 'bold', fontSize: '16px', padding: '10px 20px', marginLeft: '10px' }}
+            >
+              Verify Organization
+            </Button>
+          </div>
         </form>
+
         <Dialog open={otpDialogOpen} onClose={handleCloseOTPDialog}>
-  <DialogTitle>Enter OTP</DialogTitle>
-  <DialogContent>
-    <TextField
-      label="OTP"
-      type="text"
-      value={otp}
-      onChange={handleOTPChange}
-      fullWidth
-      required
-    />
-    {otpError && <Typography color="error">{otpError}</Typography>}
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={handleResendOTP}>Resend OTP</Button>
-    <Button onClick={handleVerifyOTP}>Verify OTP</Button>
-  </DialogActions>
-</Dialog>
+          <DialogTitle>Verify OTP</DialogTitle>
+          <DialogContent>
+            <TextField
+              label="OTP"
+              value={otp}
+              onChange={handleOTPChange}
+              fullWidth
+              required
+              InputProps={{
+                style: {
+                  borderRadius: '20px',
+                  fontWeight: 'bold',
+                }
+              }}
+              InputLabelProps={{
+                style: {
+                  fontWeight: 'bold',
+                }
+              }}
+            />
+            {otpError && <Typography color="error">{otpError}</Typography>}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseOTPDialog} color="primary">
+              Cancel
+            </Button>
+            <Button onClick={handleVerifyOTP} color="primary">
+              Verify OTP
+            </Button>
+            <Button onClick={handleResendOTP} color="primary">
+              Resend OTP
+            </Button>
+          </DialogActions>
+        </Dialog>
       </Paper>
     </div>
   );

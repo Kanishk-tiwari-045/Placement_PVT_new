@@ -72,6 +72,12 @@ class ApplicantProfileGetSerializer(serializers.ModelSerializer):
         fields = "__all__"
         depth = 1
 
+# class ApplicationCreateSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Application
+#         fields = "__all__"
+
+
 class ApplicationCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
@@ -82,7 +88,9 @@ class ApplicationCreateSerializer(serializers.ModelSerializer):
         instance.status = validated_data.get('status', instance.status)
         instance.save()
         return instance
-    
+
+
+
 class ApplicationGetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application

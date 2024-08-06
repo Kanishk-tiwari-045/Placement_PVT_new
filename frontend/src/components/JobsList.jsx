@@ -9,12 +9,10 @@ Modal.setAppElement('#root');
 
 const JobsList = ({ applicantId, applicantProfileId }) => {
   const [jobs, setJobs] = useState([]);
-  const [appliedJobIds, setAppliedJobIds] = useState([]);
   const [search, setSearch] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedJobId, setSelectedJobId] = useState(null);
   const [expandedJobId, setExpandedJobId] = useState(null);
-  const userId = localStorage.getItem('userid');
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,34 +20,21 @@ const JobsList = ({ applicantId, applicantProfileId }) => {
 
   useEffect(() => {
     fetchJobs();
-    fetchAppliedJobs();
   }, [currentPage]);
 
-  const fetchJobs = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8000/api/v1/job/?page=${currentPage}`);
-      console.log('API response:', response.data);
-      const jobsData = response.data.results;
-      if (Array.isArray(jobsData)) {
-        setJobs(jobsData);
-      } else {
-        console.error('API response results is not an array:', jobsData);
-        setJobs([]);
-      }
-    } catch (error) {
-      console.error('Error fetching jobs:', error);
-    }
-  };
-
-  const fetchAppliedJobs = async () => {
-    try {
-      const response = await axios.get(`http://localhost:8000/api/v1/application/?applicant=${userId}`);
-      const applications = response.data.data;
-      const jobIds = applications.map(app => app.job);
-      setAppliedJobIds(jobIds);
-    } catch (error) {
-      console.error('Error fetching applied jobs:', error);
-    }
+  const fetchJobs = () => {
+    axios.get(`http://localhost:8000/api/v1/job/?page=${currentPage}`)
+      .then(response => {
+        console.log('API response:', response.data);  // Log API response
+        const jobsData = response.data.results;  // Access the jobs array from the results property
+        if (Array.isArray(jobsData)) {
+          setJobs(jobsData);
+        } else {
+          console.error('API response results is not an array:', jobsData);
+          setJobs([]);
+        }
+      })
+      .catch(error => console.error('Error fetching jobs:', error));
   };
 
   const handleSearchChange = (event) => {
@@ -66,8 +51,8 @@ const JobsList = ({ applicantId, applicantProfileId }) => {
     setExpandedJobId(expandedJobId === jobId ? null : jobId);
   };
 
-  const filteredJobs = jobs.filter(job => 
-    !appliedJobIds.includes(job.id) && job.title.toLowerCase().includes(search.toLowerCase())
+  const filteredJobs = jobs.filter(job =>
+    job.title.toLowerCase().includes(search.toLowerCase())
   );
 
   // Pagination logic
@@ -204,8 +189,20 @@ const JobsList = ({ applicantId, applicantProfileId }) => {
           onClose={() => setIsModalOpen(false)}
         />
       </Modal>
+      <style jsx global>{`
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+      `}</style>
     </div>
   );
 };
 
 export default JobsList;
+
+

@@ -1,9 +1,7 @@
 import os
 from django.conf import settings
 from django.utils.html import strip_tags
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-import json
+
 from django.template import Context
 from django.template.loader import get_template
 from django.template.loader import render_to_string
@@ -71,23 +69,3 @@ def send_email(subject, template_name, context, recipient_list):
     email = EmailMultiAlternatives(subject, plain_message, from_email, recipient_list)
     email.attach_alternative(html_message, "text/html")
     email.send()
-
-
-@csrf_exempt
-def send_shortlist_email(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        applicant_email = data.get('email')
-        if not applicant_email:
-            return JsonResponse({'error': 'Email not provided'}, status=400)
-        
-        send_mail(
-            'Job Application Shortlisted',
-            'Congratulations! Your job application has been shortlisted.',
-            'your-email@gmail.com',
-            [applicant_email],
-            fail_silently=False,
-        )
-        return JsonResponse({'message': 'Email sent successfully'})
-
-    return JsonResponse({'error': 'Invalid request method'}, status=405)

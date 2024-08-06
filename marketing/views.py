@@ -214,8 +214,10 @@ def send_otp_email(to_email, otp):
         raise serializers.ValidationError({"created_by": ["An organization with this creator already exists."]})
 
 class OrganisationView(generics.ListCreateAPIView):
-    queryset = Organisation.objects.all()
+    querysets = Organisation.objects.all()
     serializer_class = OrganisationCreateSerializer
+    pagination_class = SpecificPagination()
+
 
     def perform_create(self, serializer):
         organisation = serializer.save()
@@ -270,6 +272,41 @@ class OrganisationView(generics.ListCreateAPIView):
             }, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+    def get(self, request):
+        # data_count = self.querysets.count()
+        params = request.query_params.dict()
+        querysets = self.querysets
+
+
+        if params.get("id"):
+            querysets = self.querysets.filter(id=params.get("id"))
+            
+
+        # if params.get("title"):
+        #     querysets = self.querysets.filter(title__icontains=params.get("title"))
+            
+        
+        # if params.get("company"):
+        #     querysets = self.querysets.filter(company=params.get("company"))
+            
+
+        # if params.get("work_location"):
+        #     querysets = self.querysets.filter(work_location=params.get("work_location"))
+            
+
+        # if params.get("location"):
+        #     querysets = self.querysets.filter(location=params.get("location"))
+
+        paginated_response = self.pagination_class.pagination_models(request, querysets, params, OrganisationGetSerializer)
+        if paginated_response is not None:
+            return paginated_response
+
+        orgs = OrganisationGetSerializer(querysets, many=True).data
+        return Response(
+            {"data": orgs, "total_count": querysets.count()}, status=status.HTTP_200_OK
+        )
 
 class VerifyOTPView(APIView):
     authentication_classes = [TokenAuthentication]
@@ -322,12 +359,29 @@ class JobView(APIView):
         data = request.data
         serial_data = self.serializer_class(data=data)
         if serial_data.is_valid():
+
+            #############################################
+            # Get the organization instance
+            organization = Organisation.objects.get(
+                id=serial_data.validated_data['company'].id)
+
+            # Check if the organization's email is verified
+            if not organization.email_verified:
+                return Response(
+                    {
+                        "message": "Please verify your email before creating a job post.",
+                        "url": "URL TO VERIFY EMAIL"
+                    },
+                    status=status.HTTP_403_FORBIDDEN)
+            
+
             instance=serial_data.save()
             #  job post mail
             instance_data = JobGetSerializer(instance).data
             if instance.company and instance.company.created_by:
                 job_posted_email(instance_data, instance.company.created_by.email)
-            return Response({"data": serial_data.data}, status=status.HTTP_201_CREATED)
+            # return Response({"data": serial_data.data}, status=status.HTTP_201_CREATED)
+            return Response({"data": instance_data}, status=status.HTTP_201_CREATED)
 
         return Response({"message": "invalid data"}, status=status.HTTP_400_BAD_REQUEST)
 

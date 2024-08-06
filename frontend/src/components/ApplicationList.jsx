@@ -91,7 +91,7 @@ const ApplicationList = ({ applicantId, applicantProfileId }) => {
 
           if (profileResponse.data && profileResponse.data.data) {
             profiles[application.applicant] = profileResponse.data.data;
-            console.log(`Profile Response for applicant ${application.applicant}:`, profileResponse);
+            console.log(`Profile Response for applicant ${application.applicant}:, profileResponse`);
           } else {
             console.warn(`Profile not found for applicant ${application.applicant}`);
           }
@@ -131,7 +131,7 @@ const ApplicationList = ({ applicantId, applicantProfileId }) => {
   const handleShortlistApplicant = async (applicantId, jobId) => {
     try {
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/application/`,
+        'http://localhost:8000/api/v1/application/',
         {}, // Empty body as no request body is needed, parameters are passed via params
         {
           params: {
@@ -144,6 +144,7 @@ const ApplicationList = ({ applicantId, applicantProfileId }) => {
         }
       );
       console.log('Applicant shortlisted successfully:', response.data);
+      alert("Applicant shortlisted successfully");
       // Optionally update local state or perform other actions upon success
     } catch (error) {
       console.error('Error shortlisting applicant:', error);
@@ -462,4 +463,4 @@ const ApplicationList = ({ applicantId, applicantProfileId }) => {
 
   ); 
 }; 
-export default ApplicationList; 
+export default ApplicationList;

@@ -13,6 +13,8 @@ from marketing.views import OrganisationView as Org, JobView as Job, VerifyOTPVi
 from applicants import views
 
 from applicants import views
+from resume_analyzer.views import FileUploadView
+
 
 urlpatterns = [
     path("auth/login/", LoginAPIView.as_view(), name="login"),
@@ -30,4 +32,5 @@ urlpatterns = [
     # path('skills/', views.SkillListCreateAPIView.as_view(), name='skill-list-create'),
     # path('applicant-skills/<int:pk>/', views.ApplicantSkillsAPIView.as_view(), name='applicant-skills-update'),
     path('skills/', views.SkillList.as_view(), name='skill-list'),
+    path('analyze/', FileUploadView.as_view(), name='file-upload'),
 ]

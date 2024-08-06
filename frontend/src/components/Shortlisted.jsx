@@ -26,7 +26,7 @@ const Shortlisted = () => {
         `http://localhost:8000/api/v1/org/create/?created_by=${userId}`,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            Authorization:` Bearer ${localStorage.getItem('accessToken')}`,
           },
         }
       );
@@ -101,7 +101,7 @@ const Shortlisted = () => {
     try {
       // Update application status to 'applied' or desired initial status
       const response = await axios.patch(
-        `http://localhost:8000/api/v1/application/${applicationId}/`,
+        'http://localhost:8000/api/v1/application/${applicationId}/',
         { status: 'applied' },
         {
           headers: {
@@ -119,7 +119,7 @@ const Shortlisted = () => {
 
   return (
     <div>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h4   " gutterBottom style={{ color: 'black', backgroundColor: 'white', padding: '10px'  }}>
         Shortlisted Applicants
       </Typography>
       {shortlistedApplicants.length > 0 ? (
